@@ -26,10 +26,7 @@ package net.runelite.client.plugins.customcursor;
 
 import com.google.inject.Provides;
 import java.awt.Cursor;
-import java.awt.Point;
-import java.awt.Toolkit;
 import javax.inject.Inject;
-import javax.swing.JPanel;
 import net.runelite.api.events.ConfigChanged;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
@@ -65,7 +62,7 @@ public class CustomCursorPlugin extends Plugin
 	@Override
 	protected void shutDown()
 	{
-		clientUI.getContainer().setCursor(Cursor.getDefaultCursor());
+		clientUI.setCursor(Cursor.getDefaultCursor());
 	}
 
 	@Subscribe
@@ -79,11 +76,8 @@ public class CustomCursorPlugin extends Plugin
 
 	private void updateCursor()
 	{
-		JPanel container = clientUI.getContainer();
 		CustomCursor selectedCursor = config.selectedCursor();
 
-		Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(selectedCursor.getCursorImage(),
-			new Point(container.getX(), container.getY()), selectedCursor.toString());
-		container.setCursor(cursor);
+		clientUI.setCursor(selectedCursor.getCursorImage(), selectedCursor.toString());
 	}
 }

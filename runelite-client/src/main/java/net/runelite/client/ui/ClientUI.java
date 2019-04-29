@@ -35,8 +35,10 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
+import java.awt.Image;
 import java.awt.LayoutManager;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.TrayIcon;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -110,9 +112,6 @@ public class ClientUI
 	@Getter
 	private TrayIcon trayIcon;
 
-	@Getter
-	private JPanel container;
-
 	private final RuneLiteProperties properties;
 	private final RuneLiteConfig config;
 	private final KeyManager keyManager;
@@ -133,6 +132,7 @@ public class ClientUI
 	private JButton currentButton;
 	private NavigationButton currentNavButton;
 	private boolean sidebarOpen;
+	private JPanel container;
 	private NavigationButton sidebarNavigationButton;
 	private JButton sidebarNavigationJButton;
 	private Dimension lastClientSize;
@@ -715,6 +715,19 @@ public class ClientUI
 		{
 			frame.contractBy(pluginToolbar.getWidth());
 		}
+	}
+
+	public void setCursor(Cursor cursor)
+	{
+		container.setCursor(cursor);
+	}
+
+	public void setCursor(Image image, String name)
+	{
+		Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(image,
+			new java.awt.Point(container.getX(), container.getY()), name);
+
+		container.setCursor(cursor);
 	}
 
 	private void expand(@Nullable NavigationButton button)
