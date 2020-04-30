@@ -14,13 +14,13 @@ spring.jmx.enabled: false
 
 # Google OAuth client
 oauth:
-  client-id:
-  client-secret:
+  client-id: id
+  client-secret: secret
   callback: https://api.runelite.net/oauth/
 
 # Minio client storage for cache
 minio:
-  endpoint: http://localhost:9000
+  endpoint: http://192.168.0.69:9000
   accesskey: AM54M27O4WZK65N6F8IP
   secretkey: /PZCxzmsJzwCHYlogcymuprniGCaaLUOET2n6yMP
   bucket: runelite
@@ -28,7 +28,7 @@ minio:
 # Redis client for temporary data storage
 redis:
   pool.size: 10
-  host: http://localhost:6379
+  host: http://192.168.0.69:6379
 
 mongo:
   jndiName: java:comp/env/mongodb/runelite

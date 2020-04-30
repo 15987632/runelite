@@ -49,8 +49,8 @@ public class RuneLiteAPI
 	public static final MediaType JSON = MediaType.parse("application/json");
 	public static String userAgent;
 
-	private static final String BASE = "https://api.runelite.net";
-	private static final String WSBASE = "https://api.runelite.net/ws";
+	private static final String BASE = "http://localhost:8080";
+	private static final String WSBASE = "http://192.168.0.69:8081";
 	private static final String STATICBASE = "https://static.runelite.net";
 	private static final Properties properties = new Properties();
 	private static String version;
@@ -106,7 +106,7 @@ public class RuneLiteAPI
 			return HttpUrl.parse(prop);
 		}
 
-		return HttpUrl.parse(BASE + "/session");
+		return HttpUrl.parse("http://192.168.0.69:8082");
 	}
 
 	public static HttpUrl getApiBase()
@@ -118,7 +118,7 @@ public class RuneLiteAPI
 			return HttpUrl.parse(prop);
 		}
 
-		return HttpUrl.parse(BASE + "/runelite-" + getVersion());
+		return HttpUrl.parse(BASE);
 	}
 
 	public static HttpUrl getStaticBase()
